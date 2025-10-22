@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "resx-tool": {
+      "command": "C:\\Users\\yizha\\OneDrive\\WorkSpace\\gemini\\MCP\\ResxMcp\\bin\\Release\\net8.0-windows\\win-x64\\ResxMcp.exe",
+      "args": []
+    }
+  }
+}
