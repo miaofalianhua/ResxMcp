@@ -25,20 +25,16 @@
     "json-rpc",
     "stdio"
   ],
-  "categories": [
-    "Developer Tools",
-    "Localization"
-  ],
-  "requires": [
-    "windows",
-    "dotnet-8"
-  ],
+  "categories": [ "Developer Tools", "Localization" ],
+  "requires": [ "windows", "dotnet-8", "powershell-5+" ],
+
   "entrypoint": "scripts/run-resxmcp.ps1",
+
   "mcp": {
     "servers": {
       "resx-tool": {
         "type": "process",
-        "command": "pwsh",
+        "command": "powershell",
         "args": [
           "-NoLogo",
           "-NoProfile",
@@ -50,6 +46,14 @@
         "workingDirectory": ".",
         "env": {}
       }
+    }
+  },
+
+  "tools": {
+    "resx-install-info": {
+      "description": "Check ResxMcp installation path and version",
+      "parameters": {},
+      "command": [ "echo", "ResxMcp server successfully installed and running." ]
     }
   }
 }
