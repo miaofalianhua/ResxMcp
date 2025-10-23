@@ -11,6 +11,26 @@
 
 ---
 
+## 🎬 可视化演示
+**使用 Gemini CLI + ResxMcp 编辑多语言 `.resx` 文件**
+
+**步骤 1 — 更新 `Strings.resx`（中性/英文）**  
+![Step 1](docs/images/resxmcp-step1-write-en.png)
+
+**步骤 2 — 更新 `Strings.zh-CN.resx`（简体中文）**  
+![Step 2](docs/images/resxmcp-step2-write-zhCN.png)
+
+**步骤 3 — 更新 `Strings.ja-JP.resx`（日语）**  
+![Step 3](docs/images/resxmcp-step3-write-jaJP.png)
+
+**✅ 步骤 4 — 最终多语言结果展示：**  
+下图为同步完成后的多语言对照表：  
+![Final](docs/images/resxmcp-localization-example.png)
+
+---
+
+---
+
 ## 🧭 项目简介
 
 **ResxMcp** 是一个基于 **MCP（Model Context Protocol）** 的轻量化工具服务器，  

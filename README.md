@@ -11,6 +11,26 @@
 
 ---
 
+## 🎬 Visual Walkthrough
+**Editing multi-language `.resx` via Gemini CLI + ResxMcp**
+
+**Step 1 — Update `Strings.resx` (neutral/en):**  
+![Step 1](docs/images/resxmcp-step1-write-en.png)
+
+**Step 2 — Update `Strings.zh-CN.resx` (Simplified Chinese):**  
+![Step 2](docs/images/resxmcp-step2-write-zhCN.png)
+
+**Step 3 — Update `Strings.ja-JP.resx` (Japanese):**  
+![Step 3](docs/images/resxmcp-step3-write-jaJP.png)
+
+**✅ Step 4 — Final Multilingual Result:**  
+Below is the merged multilingual view of all `.resx` files.  
+![Final](docs/images/resxmcp-localization-example.png)
+
+---
+
+---
+
 ## 🧭 Overview
 **ResxMcp** is a minimal **MCP (Model Context Protocol)** compatible tool server that allows safe **read / write / modify** operations on `.resx` files.  
 It works with **any MCP client** such as Gemini CLI, Claude Desktop, or Cursor IDE.
