@@ -9,13 +9,27 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Properties\PublishProfiles\**" />
     <Compile Remove="publish\**" />
+    <Compile Remove="ReleasePackage\**" />
+    <EmbeddedResource Remove="Properties\PublishProfiles\**" />
     <EmbeddedResource Remove="publish\**" />
+    <EmbeddedResource Remove="ReleasePackage\**" />
+    <None Remove="Properties\PublishProfiles\**" />
     <None Remove="publish\**" />
+    <None Remove="ReleasePackage\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Publish-ResxMcp.ps1" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="System.Resources.Extensions" Version="9.0.10" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Properties\" />
   </ItemGroup>
 
 </Project>

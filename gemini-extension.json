@@ -1,0 +1,48 @@
+{
+  "name": "resxmcp",
+  "display_name": "ResxMcp",
+  "description": "Lightweight MCP server for managing .resx localization files—works with any MCP-compatible client (Gemini CLI, Claude Desktop, Cursor).",
+  "version": "1.0.0",
+  "license": "MIT",
+  "author": {
+    "name": "Bin (斌哥)",
+    "github": "miaofalianhua"
+  },
+  "repository": "https://github.com/miaofalianhua/ResxMcp",
+  "homepage": "https://github.com/miaofalianhua/ResxMcp",
+  "tags": [
+    "mcp",
+    "model-context-protocol",
+    "localization",
+    "i18n",
+    "l10n",
+    "resx",
+    "dotnet",
+    "csharp",
+    "cli",
+    "ai-tool",
+    "gemini-cli",
+    "json-rpc",
+    "stdio"
+  ],
+  "categories": [
+    "Developer Tools",
+    "Localization"
+  ],
+  "requires": [
+    "windows",
+    "dotnet-8"
+  ],
+  "entrypoint": "publish/ResxMcp.exe",
+  "mcp": {
+    "servers": {
+      "resx-tool": {
+        "type": "process",
+        "command": "publish/ResxMcp.exe",
+        "workingDirectory": ".",
+        "args": [],
+        "env": {}
+      }
+    }
+  }
+}
