@@ -60,34 +60,53 @@
 
 ---
 
-## 🚀 快速上手
+## ⚠️ 安装须知
 
-### 1️⃣ 构建与发布
+有些用户可能会尝试使用以下命令来安装本项目：
+
+```bash
+gemini extensions install https://github.com/miaofalianhua/ResxMcp
+```
+
+⚠️ **请不要反复执行此命令！**  
+该命令会访问 Google 扩展注册服务，容易触发 **限流错误（HTTP 429）** 或 **安装失败**。
+
+👉 正确的做法是将 **ResxMcp** 作为本地 **MCP 服务器** 使用，而不是普通的 Gemini 扩展。
+
+---
+
+### ✅ 推荐安装方式
+
+1️⃣ **构建项目**
 ```bash
 dotnet publish -c Release -r win-x64 -p:PublishSingleFile=true -o ./publish
 ```
 
-### 2️⃣ 在 Gemini CLI 中注册
+2️⃣ **注册到 Gemini CLI**
 ```bash
-gemini mcp add-process resx-tool "./publish/ResxMcp.exe"
+gemini mcp add resx-tool "./publish/ResxMcp.exe"
 ```
 
-### 3️⃣ 测试连接
+3️⃣ **验证连接**
 ```bash
 gemini @resx-tool tools/list
 ```
 
-输出应类似：
-```json
-{
-  "tools": [
-    "resx.read",
-    "resx.write",
-    "resx.setEntry",
-    "resx.removeEntry"
-  ]
-}
-```
+输出应包含以下工具：  
+`resx.read`、`resx.write`、`resx.setEntry`、`resx.removeEntry`。
+
+💡 *提示：*  
+若要将其打包为可安装的 Gemini 扩展，可使用附带的 `gemini-extension.json`（v1.0.2）。  
+该文件将 MCP 服务器封装为扩展，待 CLI 支持 MCP-only 扩展后即可直接安装。
+
+---
+
+## 🚀 快速上手
+
+1. 构建包含多语言资源的 .NET 项目；  
+2. 使用 `resx.read` 查看 `.resx` 内容；  
+3. 使用 MCP 工具自动生成或翻译 `.resx` 文件；  
+4. 使用 `resx.write` 或 `resx.setEntry` 更新键值。
 
 ---
 

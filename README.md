@@ -57,34 +57,52 @@ It works with **any MCP client** such as Gemini CLI, Claude Desktop, or Cursor I
 
 ---
 
-## 🚀 Quick Start
+## ⚠️ Installation Notice
 
-### 1️⃣ Build & Publish
+Some users may try to install this project with:
+
+```bash
+gemini extensions install https://github.com/miaofalianhua/ResxMcp
+```
+
+⚠️ **Do NOT do this repeatedly!**  
+This command triggers Google’s extension registry verification and may result in **rate limit errors (HTTP 429)** or **installation failure**.
+
+👉 The correct way to use **ResxMcp** is as a **local MCP server**, not a regular Gemini extension.
+
+---
+
+### ✅ Recommended Installation
+
+1️⃣ **Build the project**
 ```bash
 dotnet publish -c Release -r win-x64 -p:PublishSingleFile=true -o ./publish
 ```
 
-### 2️⃣ Register in Gemini CLI
+2️⃣ **Register with Gemini CLI**
 ```bash
-gemini mcp add-process resx-tool "./publish/ResxMcp.exe"
+gemini mcp add resx-tool "./publish/ResxMcp.exe"
 ```
 
-### 3️⃣ Test Connection
+3️⃣ **Verify installation**
 ```bash
 gemini @resx-tool tools/list
 ```
 
-You should see:
-```json
-{
-  "tools": [
-    "resx.read",
-    "resx.write",
-    "resx.setEntry",
-    "resx.removeEntry"
-  ]
-}
-```
+You should see tools such as:  
+`resx.read`, `resx.write`, `resx.setEntry`, and `resx.removeEntry`.
+
+💡 *Tip:* If you wish to distribute it as an installable Gemini extension, use the included `gemini-extension.json` (v1.0.2). It wraps this MCP server for one-command installation when the registry supports MCP-only extensions.
+
+---
+
+## 🚀 Quick Start
+
+1. Build your .NET project with localization resources.  
+2. Use `resx.read` to inspect `.resx` content.  
+3. Modify, translate, or generate `.resx` files automatically with your MCP tools.  
+4. Use `resx.write` or `resx.setEntry` to update keys or values.
+
 
 ---
 
