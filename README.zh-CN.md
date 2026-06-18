@@ -1,5 +1,5 @@
 # 🌐 ResxMcp
-<p align="right">🌏 <a href="README.md">English</a></p>
+<p align="right">🌏 <a href="README.md">English</a> | <a href="README.zh-CN.md">中文</a> | <a href="README.ko-KR.md">한국어</a></p>
 一个用于管理 `.resx` 多语言资源文件的轻量级 **MCP 协议服务器**，支持 **所有兼容 MCP 的客户端**（Gemini CLI、Claude Desktop、Cursor 等）。
 
 <p align="center">
@@ -42,7 +42,7 @@
 ## ⚙️ 功能特点
 
 ✅ 读取 `.resx` 文件为 UTF-8 文本  
-✅ 原子写入，支持 `.bak` 自动备份  
+✅ 原子写入，支持可选 `.bak` 自动备份（默认关闭）  
 ✅ 支持键值的添加、更新与删除  
 ✅ 兼容所有 MCP 客户端  
 ✅ 稳定输出，适合版本对比
@@ -54,9 +54,17 @@
 | 工具名 | 功能描述 | 参数 |
 |--------|-----------|------|
 | `resx.read` | 读取 `.resx` 文件内容 | `{ "file": "路径" }` |
-| `resx.write` | 写入 `.resx` 文件（可备份） | `{ "file": "路径", "content": "<xml>", "backup": true }` |
-| `resx.setEntry` | 新增或更新键值 | `{ "file": "路径", "name": "Key", "value": "Value", "comment": "备注可选" }` |
-| `resx.removeEntry` | 删除指定键 | `{ "file": "路径", "name": "Key" }` |
+| `resx.write` | 写入 `.resx` 文件（可选备份） | `{ "file": "路径", "content": "<xml>", "backup": false }` |
+| `resx.setEntry` | 新增或更新键值 | `{ "file": "路径", "name": "Key", "value": "Value", "comment": "备注可选", "backup": false }` |
+| `resx.setEntries` | **批量**新增或更新多个键（一次读 + 一次写） | `{ "file": "路径", "entries": [{ "name": "K1", "value": "V1", "comment": "可选" }, ...], "backup": false }` |
+| `resx.removeEntry` | 删除指定键 | `{ "file": "路径", "name": "Key", "backup": false }` |
+| `resx.removeEntries` | **批量**删除多个键（一次读 + 一次写） | `{ "file": "路径", "names": ["K1", "K2"], "backup": false }` |
+
+> `backup` 参数在 `resx.write`、`resx.setEntry`、`resx.setEntries`、`resx.removeEntry`、`resx.removeEntries` 上均为 **可选**。  
+> 默认值为 `false`（不生成 `.bak`）。设为 `true` 时会在写入前保留一份 `.bak` 备份。
+
+> 💡 **性能提示：** 当需要操作多个键时，请优先使用 `resx.setEntries` / `resx.removeEntries`。  
+> 单键操作每次都会重写整个文件，而批量版本只读取一次、写入一次。
 
 ---
 

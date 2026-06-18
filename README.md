@@ -1,5 +1,5 @@
 # 🌐 ResxMcp
-<p align="right">🌏 <a href="README.zh-CN.md">中文说明</a></p>
+<p align="right">🌏 <a href="README.md">English</a> | <a href="README.zh-CN.md">中文</a> | <a href="README.ko-KR.md">한국어</a></p>
 
 > A lightweight MCP server for managing `.resx` localization files  
 > 一个用于管理 `.resx` 本地化资源文件的轻量级 MCP 服务器
@@ -41,7 +41,7 @@ It works with **any MCP client** such as Gemini CLI, Claude Desktop, or Cursor I
 
 ## ⚙️ Features
 ✅ Read `.resx` files as UTF-8 text  
-✅ Atomic write with optional `.bak` backup  
+✅ Atomic write with optional `.bak` backup (off by default)  
 ✅ Add / update / remove resource keys  
 ✅ Works with all MCP clients  
 ✅ Diff-friendly deterministic output
@@ -53,9 +53,17 @@ It works with **any MCP client** such as Gemini CLI, Claude Desktop, or Cursor I
 | Tool | Description | Parameters |
 |------|--------------|-------------|
 | `resx.read` | Read `.resx` as UTF-8 text | `{ "file": "path/to/file.resx" }` |
-| `resx.write` | Write UTF-8 text (atomic replace) | `{ "file": "path/to/file.resx", "content": "<xml>", "backup": true }` |
-| `resx.setEntry` | Add or update a key/value pair | `{ "file": "path/to/file.resx", "name": "Key", "value": "Value", "comment": "Optional" }` |
-| `resx.removeEntry` | Remove a key from `.resx` | `{ "file": "path/to/file.resx", "name": "Key" }` |
+| `resx.write` | Write UTF-8 text (atomic replace) | `{ "file": "path/to/file.resx", "content": "<xml>", "backup": false }` |
+| `resx.setEntry` | Add or update a key/value pair | `{ "file": "path/to/file.resx", "name": "Key", "value": "Value", "comment": "Optional", "backup": false }` |
+| `resx.setEntries` | Add or update **multiple** keys in one pass (1 read + 1 write) | `{ "file": "path/to/file.resx", "entries": [{ "name": "K1", "value": "V1", "comment": "Optional" }, ...], "backup": false }` |
+| `resx.removeEntry` | Remove a key from `.resx` | `{ "file": "path/to/file.resx", "name": "Key", "backup": false }` |
+| `resx.removeEntries` | Remove **multiple** keys in one pass (1 read + 1 write) | `{ "file": "path/to/file.resx", "names": ["K1", "K2"], "backup": false }` |
+
+> The `backup` parameter is **optional** on `resx.write`, `resx.setEntry`, `resx.setEntries`, `resx.removeEntry`, and `resx.removeEntries`.  
+> It defaults to `false` (no `.bak` is created). Set it to `true` to keep a `.bak` copy of the previous file.
+
+> 💡 **Performance tip:** prefer `resx.setEntries` / `resx.removeEntries` when touching more than one key.  
+> Each single-key call rewrites the whole file, while the bulk variants read once and write once.
 
 ---
 
